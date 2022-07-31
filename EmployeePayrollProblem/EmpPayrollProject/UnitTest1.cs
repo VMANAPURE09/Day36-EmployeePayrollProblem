@@ -30,7 +30,7 @@ namespace EmpPayrollProject
             employeesListToBeAddedToDB.Add(new EmployeePayroll { name = "Manjesh", salary = 30000, startdate = DateTime.Now, phone = 9674851236, address = "Pavagada", BasicPay = 29000, Deductions = 1000, TaxablePay = 500, IncomeTax = 500, NetPay = 28000, DepartmentID = 1 });
             employeesListToBeAddedToDB.Add(new EmployeePayroll { name = "Suhas", salary = 38000, startdate = DateTime.Now, phone = 7648652952, address = "Shivamoga", BasicPay = 36000, Deductions = 1000, TaxablePay = 500, IncomeTax = 500, NetPay = 35000, DepartmentID = 2 });
             employeesListToBeAddedToDB.Add(new EmployeePayroll { name = "Navnath", salary = 35000, startdate = DateTime.Now, phone = 8899775684, address = "Udupi", BasicPay = 33000, Deductions = 1000, TaxablePay = 500, IncomeTax = 500, NetPay = 31000, DepartmentID = 1 });
-
+            
             DateTime startDateTime = DateTime.Now;
             Console.WriteLine($"Data Addition to DB started on {startDateTime}");
             employeePayrollOperations.AddEmployeeToPayroll(employeesListToBeAddedToDB);
@@ -40,7 +40,15 @@ namespace EmpPayrollProject
             Console.WriteLine($"Time for Adding Data to DB is {endDateTime - startDateTime}");
             Assert.Pass();
 
-           
+            //UC2-
+            DateTime startDateTime1 = DateTime.Now;
+            Console.WriteLine($"Data Addition to DB started on {startDateTime1}");
+            employeePayrollOperations.AddEmployeeToPayrollWithThread(employeesListToBeAddedToDB);
+            DateTime endDateTime1 = DateTime.Now;
+            Console.WriteLine($"Data Addition to DB ended on {endDateTime1}");
+            Console.WriteLine($"Time for Adding Data to DB is {endDateTime1 - startDateTime1}");
+
+
         }
     }
 }

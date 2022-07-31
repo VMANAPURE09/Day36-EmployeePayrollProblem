@@ -69,7 +69,7 @@ namespace EmployeePayrollProblem
                 connection.Close();
             }
         }
-        //Adding employee to Payroll
+        //UC1-Adding Multiple employee to Payroll
         public void AddEmployeeToPayroll(List<EmployeePayroll> employeePayroll)
         {
             employeePayroll.ForEach(employeedata =>
@@ -85,5 +85,23 @@ namespace EmployeePayrollProblem
         {
             employeePayroll.Add(employeedata);
         }
+
+        //UC2-Adding Multiple employee to Payroll with threads
+        public void AddEmployeeToPayrollWithThread(List<EmployeePayroll> employeePayroll)
+        {
+            employeePayroll.ForEach(employeedata =>
+            {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Employee being added: " + employeedata.name);
+                    this.AddEmployeeToPayroll(employeedata);
+                    Console.WriteLine("Employee added: " + employeedata.name);
+                });
+                thread.Start();
+
+            });
+            Console.WriteLine(this.employeePayroll.ToString());
+        }
     }
 }
+
